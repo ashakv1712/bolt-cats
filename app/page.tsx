@@ -80,14 +80,15 @@ export default function GalleryPage() {
     window.location.reload();
   };
 
-  const uniqueMoods = catImages.map(img => img.mood).filter((mood, index, array) => array.indexOf(mood) === index);
-  const moods = ["All"].concat(uniqueMoods);
+  // Fixed the unique moods extraction using Set
+  const uniqueMoods = Array.from(new Set(catImages.map(img => img.mood)));
+  const moods = ["All", ...uniqueMoods];
 
   const filteredImages = currentFilter === "All" 
     ? catImages 
     : catImages.filter(img => img.mood === currentFilter);
 
-  const getMoodColor = (mood: string) => {
+  const getMoodColor = (mood: string): string => {
     const colors: { [key: string]: string } = {
       "Scheming": "bg-purple-100 text-purple-800",
       "Professional": "bg-blue-100 text-blue-800",
