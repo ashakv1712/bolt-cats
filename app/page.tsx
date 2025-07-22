@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -66,6 +66,11 @@ const catImages = [
 export default function GalleryPage() {
   const [favorites, setFavorites] = useState<number[]>([]);
   const [currentFilter, setCurrentFilter] = useState("All");
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const toggleFavorite = (index: number) => {
     setFavorites(prev => 
@@ -202,7 +207,7 @@ export default function GalleryPage() {
                     <div className="flex items-center gap-1 text-pink-500">
                       <Heart className="w-4 h-4" />
                       <span className="text-xs">
-                        {Math.floor(Math.random() * 500) + 100}
+                        {mounted ? Math.floor(Math.random() * 500) + 100 : 0}
                       </span>
                     </div>
                   </div>
