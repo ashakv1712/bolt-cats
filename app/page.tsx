@@ -80,16 +80,8 @@ export default function GalleryPage() {
     window.location.reload();
   };
 
-  // Fixed the unique moods extraction without Set
-  const uniqueMoods = catImages
-    .map(img => img.mood)
-    .reduce((acc: string[], mood) => {
-      if (!acc.includes(mood)) {
-        acc.push(mood);
-      }
-      return acc;
-    }, []);
-  const moods = ["All"].concat(uniqueMoods);
+  // Simple hardcoded moods list - no complex logic needed
+  const moods = ["All", "Scheming", "Professional", "Judgmental", "Majestic", "Contemplative", "Amused", "Mischievous", "Adorable", "Innocent"];
 
   const filteredImages = currentFilter === "All" 
     ? catImages 
