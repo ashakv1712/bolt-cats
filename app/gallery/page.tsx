@@ -85,7 +85,7 @@ export default function GalleryPage() {
     window.location.reload();
   };
 
-  const moods = ["All", ...new Set(catImages.map(img => img.mood))];
+  const moods = ["All", "Scheming", "Professional", "Judgmental", "Majestic", "Contemplative", "Amused", "Mischievous", "Adorable", "Innocent"];
 
   const filteredImages = currentFilter === "All" 
     ? catImages 
