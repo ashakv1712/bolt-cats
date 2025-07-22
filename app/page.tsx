@@ -80,9 +80,16 @@ export default function GalleryPage() {
     window.location.reload();
   };
 
-  // Fixed the unique moods extraction using Set
-  const uniqueMoods = Array.from(new Set(catImages.map(img => img.mood)));
-  const moods = ["All", ...uniqueMoods];
+  // Fixed the unique moods extraction without Set
+  const uniqueMoods = catImages
+    .map(img => img.mood)
+    .reduce((acc: string[], mood) => {
+      if (!acc.includes(mood)) {
+        acc.push(mood);
+      }
+      return acc;
+    }, []);
+  const moods = ["All"].concat(uniqueMoods);
 
   const filteredImages = currentFilter === "All" 
     ? catImages 
