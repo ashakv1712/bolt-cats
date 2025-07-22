@@ -2,7 +2,6 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
 import { TrendingUp, Users, Heart, Globe, Crown, Timer } from "lucide-react";
 
 const stats = [
@@ -135,10 +134,12 @@ export default function StatsPage() {
                       {stat.percentage}%
                     </Badge>
                   </div>
-                  <Progress 
-                    value={stat.percentage} 
-                    className="h-3"
-                  />
+                  <div className="w-full bg-gray-200 rounded-full h-3">
+                    <div 
+                      className="bg-purple-600 h-3 rounded-full transition-all duration-300" 
+                      style={{ width: `${stat.percentage}%` }}
+                    ></div>
+                  </div>
                 </div>
               ))}
             </div>
